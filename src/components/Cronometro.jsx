@@ -37,6 +37,15 @@ const Cronometro = () => {
         return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
     }
 
+    // Nuevas funciones para ajustar el tiempo
+    const ajustarTiempoCuarto = (operacion) => {
+        if (operacion === 'sumar') {
+            setTiempoCuarto(prev => prev + 60)
+        } else {
+            setTiempoCuarto(prev => Math.max(0, prev - 60))
+        }
+    }
+
     return (
         <div className="flex flex-col md:flex-row gap-1 p-1">
             {/* Cronómetro Principal */}
@@ -46,10 +55,26 @@ const Cronometro = () => {
                     {formatearTiempo(tiempoCuarto)}
                 </div>
 
-                <div className="flex gap-1 justify-center">
+                <div className="grid grid-cols-2 gap-1">
+                    <button
+                        onClick={() => ajustarTiempoCuarto('sumar')}
+                        className="p-1.5 bg-indigo-600 hover:bg-indigo-700 text-black rounded-lg shadow-lg
+                    text-base font-bold transition-all duration-200"
+                    >
+                        +
+                    </button>
+                    
+                    <button
+                        onClick={() => ajustarTiempoCuarto('restar')}
+                        className="p-1.5 bg-rose-600 hover:bg-rose-700 text-black rounded-lg shadow-lg
+                    text-base font-bold transition-all duration-200"
+                    >
+                        -
+                    </button>
+
                     <button
                         onClick={() => setCorriendoCuarto(!corriendoCuarto)}
-                        className={`p-1.5 text-black rounded-lg shadow-lg text-base font-bold w-16
+                        className={`p-1.5 text-white rounded-lg shadow-lg text-base font-bold
             transition-all duration-200 ${corriendoCuarto
                                 ? 'bg-amber-600 hover:bg-amber-700'
                                 : 'bg-emerald-600 hover:bg-emerald-700'}`}
@@ -63,14 +88,14 @@ const Cronometro = () => {
                             setTiempoCuarto(600)
                         }}
                         className="p-1.5 bg-rose-600 hover:bg-rose-700 text-black rounded-lg shadow-lg
-                    text-base font-bold w-16 transition-all duration-200"
+                    text-base font-bold transition-all duration-200"
                     >
                         🔄
                     </button>
                 </div>
             </div>
 
-            {/* Contador 24 Segundos */}
+            {/* Contador 24 Segundos (se mantiene igual) */}
             <div className="w-full md:w-1/2 bg-slate-900 p-2 rounded-xl shadow-2xl border-2 border-cyan-500">
                 <h2 className="text-base font-bold text-center mb-1 text-cyan-400">POSESIÓN</h2>
                 <div className="text-3xl md:text-4xl font-mono font-bold text-center mb-2 text-cyan-500">
