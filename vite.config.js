@@ -5,5 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/Tablero-BPA/'
+  base: './', // Esto es CRUCIAL para Vercel
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets'
+  }
 })

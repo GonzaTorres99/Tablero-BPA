@@ -13,24 +13,24 @@ const App = () => {
     <img
       src="./logoBPA.png"
       alt="Logo BPA"
-      className="w-20 h-20 md:w-28 md:h-28  lg:w-55  lg:h-55 object-contain 
+      className="w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 object-contain 
                 opacity-90 hover:opacity-100 transition-opacity
                 drop-shadow-lg hover:drop-shadow-xl"
     />
   </div>
 
-  {/* Contenido principal */}
-  <div className="h-full flex flex-col items-center justify-center pt-1 pb-1 px-2 mx-auto">
-    {/* Título */}
-    <div className="mb-1">
+  {/* Contenido principal - Ahora con scroll condicional */}
+  <div className="h-full flex flex-col items-center pt-1 pb-1 px-2 mx-auto">
+    {/* Título (fijo) */}
+    <div className="mb-1 sticky top-0 z-10 bg-slate-900/80 backdrop-blur-sm w-full py-1">
       <h1 className="text-xl md:text-2xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
         TABLERO <span className="text-amber-400">BPA</span>
       </h1>
       <div className="h-1 w-12 md:w-20 mx-auto bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full mt-1"></div>
     </div>
 
-    {/* Contenedor de componentes */}
-    <div className="w-full max-w-3xl flex-grow flex flex-col gap-1 justify-center p-1 min-h-0">
+    {/* Contenedor de componentes (con scroll) */}
+    <div className="w-full max-w-3xl flex-grow flex flex-col gap-1 p-1 overflow-y-auto">
       <Cronometro />
       <Puntuacion />
       <Faltas />
