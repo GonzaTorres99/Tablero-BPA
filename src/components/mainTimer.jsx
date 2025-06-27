@@ -72,7 +72,7 @@ const MainTimer = () => {
         
         <button
           onClick={() => ajustarTiempo('restar')}
-          className="p-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg shadow
+          className="p-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow
                     text-xs md:text-sm font-bold transition-all duration-200"
         >
           -1 min
@@ -93,7 +93,7 @@ const MainTimer = () => {
             setCorriendo(false);
             setTiempoCuarto(600);
           }}
-          className="p-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg shadow
+          className="p-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow
                     text-xs md:text-sm font-bold transition-all duration-200"
         >
           🔄 Reiniciar

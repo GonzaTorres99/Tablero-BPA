@@ -1,17 +1,43 @@
-import { useState, useEffect } from "react"
-import Cronometro from './components/Cronometro'
-import Puntuacion from './components/Puntuacion'
-import Cuarto from './components/Cuarto'
-import Faltas from './components/Faltas'
-import ScoreLocal from "./components/scoreLocal"
-import ScoreVisitor from "./components/scoreVisita"
-import ShotClock from "./components/shotClock"
-import MainTimer from "./components/mainTimer"
-import './App.css'
+import { useRef, useState } from "react";
+import Cronometro from './components/Cronometro';
+import Puntuacion from './components/Puntuacion';
+import Cuarto from './components/Cuarto';
+import Faltas from './components/Faltas';
+import ScoreLocal from "./components/scoreLocal";
+import ScoreVisitor from "./components/scoreVisita";
+import ShotClock from "./components/shotClock";
+import MainTimer from "./components/mainTimer";
+import './App.css';
 
 const App = () => {
+  // Referencia para el audio de la bocina
+  const hornAudioRef = useRef(null);
+
+  // Estado para la animación de pulsación
+  const [isPressed, setIsPressed] = useState(false);
+
+  // Función para reproducir la bocina
+  const playHorn = () => {
+    if (hornAudioRef.current) {
+      // Reiniciamos el audio antes de reproducir
+      hornAudioRef.current.currentTime = 0;
+
+      // Reproducimos con manejo de errores
+      hornAudioRef.current.play().catch(e => {
+        console.error("Error al reproducir bocina:", e);
+      });
+
+      // Animación de pulsación
+      setIsPressed(true);
+      setTimeout(() => setIsPressed(false), 300);
+    }
+  };
+
   return (
     <div className="h-screen w-screen overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative">
+      {/* Elemento de audio oculto */}
+      <audio ref={hornAudioRef} src="/sounds/horn.mp3" preload="auto" />
+
       {/* Contenedor principal con título */}
       <div className="h-full flex flex-col pt-16">
         {/* Título fijo en la parte superior */}
@@ -29,16 +55,23 @@ const App = () => {
             <ScoreLocal />
           </div>
 
-          {/* Div2 - Logo central (1/4 - 2/5) */}
-          <div className="row-start-1 row-end-2 col-start-4 col-end-5 p-1">
-            <div className="w-full h-full flex items-center justify-center rounded-full bg-slate-900/50 backdrop-blur-sm p-1 shadow-lg hover:shadow-xl transition-all">
-              <img
-                src="./logoBPA.png"
-                alt="Logo BPA"
-                className="w-full h-full object-contain opacity-90 hover:opacity-100 transition-opacity"
-              />
-            </div>
-          </div>
+         {/* Div2 - Logo central (1/4 - 2/5) */}
+<div className="row-start-1 row-end-2 col-start-4 col-end-5 p-1">
+  <div className="w-full h-full flex items-center justify-center rounded-full bg-slate-900/50 backdrop-blur-sm p-1 shadow-lg hover:shadow-xl transition-all">
+    <button 
+  onClick={playHorn}
+  className={`w-full h-full bg-transparent border-0 p-0 focus:outline-none ${isPressed ? 'scale-90' : ''}`}
+  style={{ transition: 'transform 0.3s ease' }}
+>
+  <img
+    src="./logoBPA.png"
+    alt="Logo BPA"
+    className="w-full h-full object-contain opacity-90 hover:opacity-100 transition-opacity"
+    style={{ background: 'transparent' }}
+  />
+</button>
+  </div>
+</div>
 
           {/* Div3 - Tablero visitante (1/5 - 4/8) */}
           <div className="row-start-1 row-end-4 col-start-5 col-end-8">
@@ -67,7 +100,7 @@ const App = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

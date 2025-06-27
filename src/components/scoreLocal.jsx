@@ -89,7 +89,7 @@ const ScoreLocal = () => {
       <div className="flex justify-center gap-1 p-1 bg-slate-800/50 rounded-b-lg">
         <button
           onClick={() => handlePuntos('restar')}
-          className="p-1 bg-rose-600 hover:bg-rose-700 text-white rounded-lg shadow
+          className="p-1 bg-white text-white rounded-lg shadow
                     text-xs font-bold w-10 md:w-12 flex items-center justify-center
                     transition-all duration-200 transform hover:scale-105"
         >
@@ -98,7 +98,7 @@ const ScoreLocal = () => {
 
         <button
           onClick={() => handlePuntos('sumar')}
-          className="p-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg shadow
+          className="p-1 bg-white text-white rounded-lg shadow
                     text-xs font-bold w-10 md:w-12 flex items-center justify-center
                     transition-all duration-200 transform hover:scale-105"
         >

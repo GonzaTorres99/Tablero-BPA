@@ -64,7 +64,7 @@ const ShotClock = () => {
             setCorriendo(false);
             setTiempo(24);
           }}
-          className="p-1 bg-rose-600 hover:bg-rose-700 text-white rounded shadow
+          className="p-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded shadow
                     text-sm font-bold transition-all duration-200"
         >
           24s
