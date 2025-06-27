@@ -1,10 +1,12 @@
 // ShotClock.jsx optimizado para su nueva posición
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const ShotClock = () => {
   const [tiempo, setTiempo] = useState(24);
   const [corriendo, setCorriendo] = useState(false);
+  const audioRef = useRef(null); // Referencia para el elemento de audio
 
+  // Efecto para el contador
   useEffect(() => {
     let intervalo;
     if (corriendo && tiempo > 0) {
@@ -17,8 +19,21 @@ const ShotClock = () => {
     return () => clearInterval(intervalo);
   }, [corriendo, tiempo]);
 
+  // Efecto para la bocina cuando el tiempo llega a 0
+  useEffect(() => {
+    if (tiempo === 0) {
+      // Intenta reproducir el sonido
+      audioRef.current.play().catch(e => {
+        console.error("Error al reproducir el sonido:", e);
+      });
+    }
+  }, [tiempo]);
+
   return (
     <div className="w-full h-full bg-slate-900 rounded-xl border-2 border-cyan-500 flex flex-col">
+      {/* Elemento de audio oculto */}
+      <audio ref={audioRef} src="/sounds/horn.mp3" preload="auto" />
+      
       {/* Cabecera minimalista */}
       <div className="text-sm text-center py-1 text-cyan-400 bg-slate-800/80 rounded-t-lg">
         POSESIÓN

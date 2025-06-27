@@ -1,9 +1,10 @@
 // MainTimer.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const MainTimer = () => {
   const [tiempoCuarto, setTiempoCuarto] = useState(600);
   const [corriendo, setCorriendo] = useState(false);
+  const audioRef = useRef(null); // Referencia para el elemento de audio
 
   useEffect(() => {
     let intervalo;
@@ -14,6 +15,16 @@ const MainTimer = () => {
     }
     return () => clearInterval(intervalo);
   }, [corriendo, tiempoCuarto]);
+
+  // Efecto para la bocina cuando el tiempo llega a 0
+  useEffect(() => {
+    if (tiempoCuarto === 0) {
+      // Intenta reproducir el sonido
+      audioRef.current.play().catch(e => {
+        console.error("Error al reproducir el sonido:", e);
+      });
+    }
+  }, [tiempoCuarto]);
 
   const formatearTiempo = (segundos) => {
     const mins = Math.floor(segundos / 60);
@@ -31,6 +42,9 @@ const MainTimer = () => {
 
   return (
     <div className="w-full h-full bg-slate-900 rounded-xl shadow-2xl border-2 border-purple-500 flex flex-col">
+      {/* Elemento de audio oculto */}
+      <audio ref={audioRef} src="/sounds/horn.mp3" preload="auto" />
+      
       {/* Contenedor principal para el tiempo - ocupa máximo espacio */}
       <div className="flex-grow flex flex-col items-center justify-center p-1">
         {/* Tiempo con tamaño adaptativo usando clamp() */}
