@@ -39,14 +39,13 @@ const App = () => {
       <audio ref={hornAudioRef} src="/sounds/horn.mp3" preload="auto" />
 
       {/* Contenedor principal con título */}
-      <div className="h-full flex flex-col pt-16">
-        {/* Título fijo en la parte superior */}
-        <div className="absolute top-0 left-0 right-0 z-10 bg-slate-900/80 backdrop-blur-sm w-full py-2">
-          <h1 className="text-xl md:text-2xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-            TABLERO <span className="text-amber-400">BPA</span>
-          </h1>
-          <div className="h-1 w-12 md:w-20 mx-auto bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full mt-1"></div>
-        </div>
+      <div className="h-full flex flex-col pt-24"> {/* Máximo recomendado */}
+  <div className="absolute top-0 left-0 right-0 z-10 bg-slate-900/80 backdrop-blur-sm w-full py-5">
+    <h1 className="text-3xl md:text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+      TABLERO <span className="text-amber-400">BPA</span>
+    </h1>
+    <div className="h-1.5 w-20 md:w-28 mx-auto bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full mt-3"></div>
+  </div>
 
         {/* Grid principal con la estructura original de 7x6 */}
         <div className="grid grid-cols-7 grid-rows-6 gap-2 h-full p-4">
