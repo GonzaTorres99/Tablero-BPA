@@ -4,7 +4,7 @@ const ScoreLocal = () => {
   const [puntos, setPuntos] = useState(0);
   const [equipo, setEquipo] = useState("blanco");
   
-  // Mapeo de equipos a colores
+  // Mapeo de equipos a colores (se agregó "negro")
   const coloresEquipos = {
     blanco: { 
       border: "border-gray-300",
@@ -45,6 +45,11 @@ const ScoreLocal = () => {
       border: "border-green-500",
       text: "text-green-500",
       bg: "bg-green-900/20"
+    },
+    negro: {
+      border: "border-black",
+      text: "text-white",
+      bg: "bg-black/40"
     }
   };
 
@@ -89,7 +94,7 @@ const ScoreLocal = () => {
       <div className="flex justify-center gap-1 p-1 bg-slate-800/50 rounded-b-lg">
         <button
           onClick={() => handlePuntos('restar')}
-          className="p-1 bg-white text-white rounded-lg shadow
+          className="p-1 bg-white text-black rounded-lg shadow
                     text-xs font-bold w-10 md:w-12 flex items-center justify-center
                     transition-all duration-200 transform hover:scale-105"
         >
@@ -98,7 +103,7 @@ const ScoreLocal = () => {
 
         <button
           onClick={() => handlePuntos('sumar')}
-          className="p-1 bg-white text-white rounded-lg shadow
+          className="p-1 bg-white text-black rounded-lg shadow
                     text-xs font-bold w-10 md:w-12 flex items-center justify-center
                     transition-all duration-200 transform hover:scale-105"
         >

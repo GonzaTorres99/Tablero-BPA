@@ -7,6 +7,7 @@ import ScoreLocal from "./components/scoreLocal";
 import ScoreVisitor from "./components/scoreVisita";
 import ShotClock from "./components/shotClock";
 import MainTimer from "./components/mainTimer";
+import ModalAudios from "./components/ModalAudios";
 import './App.css';
 
 const App = () => {
@@ -40,11 +41,17 @@ const App = () => {
 
       {/* Contenedor principal con título */}
       <div className="h-full flex flex-col pt-24"> {/* Máximo recomendado */}
-  <div className="absolute top-0 left-0 right-0 z-10 bg-slate-900/80 backdrop-blur-sm w-full py-5">
-    <h1 className="text-3xl md:text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
-      TABLERO <span className="text-amber-400">BPA</span>
-    </h1>
-    <div className="h-1.5 w-20 md:w-28 mx-auto bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full mt-3"></div>
+  <div className="absolute top-0 left-0 right-0 z-10 bg-slate-900/80 backdrop-blur-sm w-full py-5 flex items-center justify-between px-5">
+    <div></div>
+    <div className="flex-1 text-center">
+      <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">
+        TABLERO <span className="text-amber-400">BPA</span>
+      </h1>
+      <div className="h-1.5 w-20 md:w-28 mx-auto bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full mt-3"></div>
+    </div>
+    <div className="flex items-center justify-end">
+      <ModalAudios />
+    </div>
   </div>
 
         {/* Grid principal con la estructura original de 7x6 */}
@@ -69,6 +76,7 @@ const App = () => {
     style={{ background: 'transparent' }}
   />
 </button>
+
   </div>
 </div>
 
